@@ -81,25 +81,59 @@ function renderModule(){
             <td> ${index+1} </td>
             <td> ${item.name} </td>
             <td> ${item.unit} </td>
-            <td> ${item.grade} </td>
-            <td> ${item.score} </td>
-            <td> <button class="js-delete"> Delete </button> </td>
+            <td> 
+                <select name="grade"
+        class="js-change-grade" data-index="${index}">
+                <option selected="selected">
+                ${item.grade} 
+                </option>
+                <option value="A+">A+</option>
+                <option value="A">A</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B">B</option>
+                <option value="B-">B-</option>
+                <option value="C+">C+</option>
+                <option value="C">C</option>
+                <option value="C-">C-</option>
+                <option value="D+">D+</option>
+                <option value="D">D</option>
+                </select></td>
+            <td> ${item.score.toFixed(2)} </td>
+            <td> <button data-index="${index}" class="js-delete"> Delete </button> </td>
         </tr> 
         `
     })
 
     document.querySelector('.js-main-body').innerHTML = moduleHTML;
 
-    renderGPA();
+    document.querySelectorAll('.js-change-grade').forEach((select) => {
+        select.addEventListener('change', (event) => {
+            const index = event.target.dataset.index; // Get the index of the row
+            const newGrade = event.target.value;
 
-    document.querySelectorAll('.js-delete').forEach((event,index) => {
-        event.addEventListener('click', () => {
+            // Update moduleArray
+            moduleArray[index].grade = newGrade;
+            moduleArray[index].score = calculateResult(newGrade);
+
+            renderModule(); // Re-render the table
+            renderGPA();    // Recalculate GPA
+        });
+    });
+    document.querySelectorAll('.js-delete').forEach((deleteButton) => {
+        deleteButton.addEventListener('click', (event) => {
+            const index = event.target.dataset.index;
             moduleArray.splice(index, 1);
             renderModule();
             renderGPA()
         })
     })
+    if (!moduleArray.length){
+        document.querySelector('.js-main-body').innerHTML = "";
+    }
 }
+
+
 
 function renderGPA(){
     let finalGPA;
