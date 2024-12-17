@@ -1,0 +1,56 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+table,th,td {
+    border-collapse: collapse;
+    border: 1px solid;
+    width: 50%;
+}
+td {
+    text-align: center;
+    padding: 5px;
+}
+
+th:nth-child(1), td:nth-child(1) { 
+    width: 40px; /* Adjust the width of the first column */
+}
+
+th:nth-child(2), td:nth-child(2) { 
+    width: 100px; /* Adjust the width of the second column */
+}
+
+th:nth-child(3), td:nth-child(3) { 
+    width: 120px; /* Adjust the width of the third column */
+}
+
+th:nth-child(4), td:nth-child(4) { 
+    width: 120px; /* Adjust the width of the fourth column */
+}
+
+th:nth-child(5), td:nth-child(5) { 
+    width: 50px; /* Adjust the width of the fifth column */
+}
+th:nth-child(6), td:nth-child(6) { 
+    width: 50px; /* Adjust the width of the last column */
+}
+
+.inputs {
+    margin-bottom: 20px;
+}
+
+.js-main-body {
+    margin-bottom: 20px;
+}
+
+.js-delete{
+    cursor: pointer;
+}
+
+.js-expected-gpa,.cGPA {
+    display: inline-block;
+}
+
+.js-expected-gpa{
+    font-weight: bold;
+}

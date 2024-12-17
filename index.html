@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> 
+    <script src = "script.js" defer ></script>
+    <title>GPA Calculator</title>
+</head>
+<body>
+    <div class="inputs">
+        <h1> GPA Calculator</h1>
+        <input class="js-module-name" placeholder="Name of Module">
+        <select name="number-of-modules"
+        class="js-no-of-modules">
+            <option value="4">4</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
+        <select name="grade"
+        class="js-grade">
+        <option value="A+">A+</option>
+        <option value="A">A</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B">B</option>
+        <option value="B-">B-</option>
+        <option value="C+">C+</option>
+        <option value="C">C</option>
+        <option value="C-">C-</option>
+        <option value="D+">D+</option>
+        <option value="D">D</option>
+        </select>
+        <button class="js-add-button"> Add</button>
+    </div>
+    
+    <div class="js-main-body"> </div>
+    <div class="cGPA"> Cummulative GPA:</div>
+    <div class="js-expected-gpa"> </div>
+</body>
+</html>
