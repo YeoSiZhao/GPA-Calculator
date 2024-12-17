@@ -76,29 +76,25 @@ function renderModule(){
     `;
     
     moduleArray.forEach((item,index) => {
+        // List of all grades
+        const grades = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D"];
+        
+        // Filter out the current grade so it does not appear in the dropdown options
+        const dropdownOptions = grades
+            .filter(grade => grade !== item.grade)
+            .map(grade => `<option value="${grade}">${grade}</option>`)
+            .join('');
         moduleHTML += ` 
         <tr>
             <td> ${index+1} </td>
             <td> ${item.name} </td>
             <td> ${item.unit} </td>
             <td> 
-                <select name="grade"
-        class="js-change-grade" data-index="${index}">
-                <option selected="selected">
-                ${item.grade} 
-                </option>
-                <option value="A+">A+</option>
-                <option value="A">A</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B">B</option>
-                <option value="B-">B-</option>
-                <option value="C+">C+</option>
-                <option value="C">C</option>
-                <option value="C-">C-</option>
-                <option value="D+">D+</option>
-                <option value="D">D</option>
-                </select></td>
+                <select class="js-change-grade" data-index="${index}">
+                    <option selected="selected">${item.grade}</option>
+                    ${dropdownOptions}
+                </select>
+            </td>
             <td> ${item.score.toFixed(2)} </td>
             <td> <button data-index="${index}" class="js-delete"> Delete </button> </td>
         </tr> 
