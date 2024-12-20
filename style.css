@@ -1,46 +1,48 @@
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-}
-table,th,td {
-    border-collapse: collapse;
-    border: 1px solid;
-    width: 50%;
-}
-td {
-    text-align: center;
-    padding: 5px;
-}
-
-th:nth-child(1), td:nth-child(1) { 
-    width: 40px; /* Adjust the width of the first column */
-}
-
-th:nth-child(2), td:nth-child(2) { 
-    width: 100px; /* Adjust the width of the second column */
-}
-
-th:nth-child(3), td:nth-child(3) { 
-    width: 120px; /* Adjust the width of the third column */
-}
-
-th:nth-child(4), td:nth-child(4) { 
-    width: 120px; /* Adjust the width of the fourth column */
-}
-
-th:nth-child(5), td:nth-child(5) { 
-    width: 50px; /* Adjust the width of the fifth column */
-}
-th:nth-child(6), td:nth-child(6) { 
-    width: 50px; /* Adjust the width of the last column */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .inputs {
-    margin-bottom: 20px;
+    margin: 5px;
+    padding: 10px;
 }
 
+.grade-table {
+    margin-top: 50px;
+}
+
+.grade-table table, .my-table table {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.grade-table th, .grade-table td, 
+.my-table th, .my-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.grade-table th, .my-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 20px;
+}
+
+.my-table {
+    margin-left: 15px;
+}
 .js-main-body {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .js-delete{
@@ -53,4 +55,8 @@ th:nth-child(6), td:nth-child(6) {
 
 .js-expected-gpa{
     font-weight: bold;
+}
+
+.js-module-name,.js-no-of-modules,.js-grade,.js-add-button{
+    padding: 10px;
 }

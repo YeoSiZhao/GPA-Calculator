@@ -8,34 +8,94 @@
     <title>GPA Calculator</title>
 </head>
 <body>
-    <div class="inputs">
-        <h1> GPA Calculator</h1>
-        <input class="js-module-name" placeholder="Name of Module">
-        <select name="number-of-modules"
-        class="js-no-of-modules">
-            <option value="4">4</option>
-            <option value="2">2</option>
-            <option value="1">1</option>
-          </select>
-        <select name="grade"
-        class="js-grade">
-        <option value="A+">A+</option>
-        <option value="A">A</option>
-        <option value="A-">A-</option>
-        <option value="B+">B+</option>
-        <option value="B">B</option>
-        <option value="B-">B-</option>
-        <option value="C+">C+</option>
-        <option value="C">C</option>
-        <option value="C-">C-</option>
-        <option value="D+">D+</option>
-        <option value="D">D</option>
-        </select>
-        <button class="js-add-button"> Add</button>
+    <div class="container">
+        <div class="left">
+            <div class="inputs">
+                <h1> GPA Calculator</h1>
+                <input class="js-module-name" placeholder="Name of Module">
+                <select name="number-of-modules"
+                class="js-no-of-modules">
+                    <option value="4">4</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                  </select>
+                <select name="grade"
+                class="js-grade">
+                <option value="A+">A+</option>
+                <option value="A">A</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B">B</option>
+                <option value="B-">B-</option>
+                <option value="C+">C+</option>
+                <option value="C">C</option>
+                <option value="C-">C-</option>
+                <option value="D+">D+</option>
+                <option value="D">D</option>
+                <option value="SU">SU</option>
+                </select>
+                <button class="js-add-button"> Add</button>
+            </div>
+        
+            <div class="my-table">
+                <div class="js-main-body"></div>
+                <div class="cGPA"> Cumulative GPA:</div>
+                <div class="js-expected-gpa"></div>
+            </div>
+        </div>
+        
+        <div class="grade-table">
+            <table>
+                <tr>
+                    <th> Grade </th>
+                    <th> Grade Point </th>
+                </tr>
+                <tr>
+                    <td> A+ </td>
+                    <td> 5.0 </td>
+                </tr>
+                <tr>
+                    <td> A </td>
+                    <td> 5.0 </td>
+                </tr>
+                <tr>
+                    <td> A- </td>
+                    <td> 4.5 </td>
+                </tr>
+                <tr>
+                    <td> B+ </td>
+                    <td> 4.0 </td>
+                </tr>
+                <tr>
+                    <td> B </td>
+                    <td> 3.5 </td>
+                </tr>
+                <tr>
+                    <td> B- </td>
+                    <td> 3.0 </td>
+                </tr>
+                <tr>
+                    <td> C+ </td>
+                    <td> 2.5 </td>
+                </tr>
+                <tr>
+                    <td> C </td>
+                    <td> 2.0 </td>
+                </tr>
+                <tr>
+                    <td> D+ </td>
+                    <td> 1.5 </td>
+                </tr>
+                <tr>
+                    <td> D </td>
+                    <td> 1.0 </td>
+                </tr>
+                <tr>
+                    <td> F </td>
+                    <td> 0 </td>
+                </tr>
+            </table>
+        </div>
     </div>
-    
-    <div class="js-main-body"> </div>
-    <div class="cGPA"> Cummulative GPA:</div>
-    <div class="js-expected-gpa"> </div>
 </body>
 </html>

@@ -1,8 +1,16 @@
-let moduleArray = [];
+let moduleArray = JSON.parse(localStorage.getItem('modules')) || [];
+
+renderModule();
+renderGPA();
+
 
 document.querySelector('.js-add-button').addEventListener('click', () => {
     addModule();
 })
+
+function saveHistory () {
+    localStorage.setItem('modules',JSON.stringify(moduleArray));
+}
 
 
 function addModule(){
@@ -22,6 +30,8 @@ function addModule(){
     moduleArray.push(perModule);
 
     renderModule()
+    renderGPA()
+    saveHistory();
     document.querySelector('.js-module-name').value = '';
 }
 
@@ -58,9 +68,13 @@ function calculateResult(result) {
         case "D":
             gpa = 1.0;     
             break;  
+        case "SU":
+            gpa = 0.0;     
+            break;  
     }
     return gpa;
 }
+
 
 function renderModule(){
     let moduleHTML = `
@@ -71,19 +85,18 @@ function renderModule(){
                 <th> No. of MC </th>
                 <th> Grade </th>
                 <th> Score </th>
-                <th> </th>
+                <th> Delete </th>
             </tr>
     `;
-    
-    moduleArray.forEach((item,index) => {
-        // List of all grades
-        const grades = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D"];
-        
-        // Filter out the current grade so it does not appear in the dropdown options
+
+    moduleArray.forEach((item, index) => {
+        const grades = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "SU"];
+
         const dropdownOptions = grades
             .filter(grade => grade !== item.grade)
             .map(grade => `<option value="${grade}">${grade}</option>`)
             .join('');
+
         moduleHTML += ` 
         <tr>
             <td> ${index+1} </td>
@@ -98,38 +111,40 @@ function renderModule(){
             <td> ${item.score.toFixed(2)} </td>
             <td> <button data-index="${index}" class="js-delete"> Delete </button> </td>
         </tr> 
-        `
-    })
+        `;
+    });
 
     document.querySelector('.js-main-body').innerHTML = moduleHTML;
 
     document.querySelectorAll('.js-change-grade').forEach((select) => {
         select.addEventListener('change', (event) => {
-            const index = event.target.dataset.index; // Get the index of the row
+            const index = event.target.dataset.index;
             const newGrade = event.target.value;
 
-            // Update moduleArray
             moduleArray[index].grade = newGrade;
             moduleArray[index].score = calculateResult(newGrade);
 
-            renderModule(); // Re-render the table
-            renderGPA();    // Recalculate GPA
+            renderModule(); 
+            renderGPA();
+            saveHistory();
         });
     });
+
     document.querySelectorAll('.js-delete').forEach((deleteButton) => {
         deleteButton.addEventListener('click', (event) => {
             const index = event.target.dataset.index;
             moduleArray.splice(index, 1);
             renderModule();
-            renderGPA()
-        })
-    })
+            renderGPA();
+            saveHistory();
+        });
+    });
+
     if (!moduleArray.length){
         document.querySelector('.js-main-body').innerHTML = "";
+        
     }
 }
-
-
 
 function renderGPA(){
     let finalGPA;
@@ -139,12 +154,19 @@ function renderGPA(){
 
     if (moduleArray.length > 0){
         moduleArray.forEach((item) => {
-            totalmc += Number(item.unit);
-            totalpoints += Number(item.unit) * Number(item.score);
+            if (item.grade == "SU")
+            {
+                totalmc += 0;
+            }
+            else {
+                totalmc += Number(item.unit);
+                totalpoints += Number(item.unit) * Number(item.score);
+            }
+
         })
         finalGPA = totalpoints / totalmc;
     }
-    else{
+    else {
         finalGPA = "";
     }
     document.querySelector('.js-expected-gpa').innerHTML = finalGPA ? finalGPA.toFixed(2) : "";
