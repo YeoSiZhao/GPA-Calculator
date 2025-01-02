@@ -71,6 +71,9 @@ function calculateResult(result) {
         case "SU":
             gpa = 0.0;     
             break;  
+        case "CS":
+            gpa = 0.0;     
+            break;
     }
     return gpa;
 }
@@ -90,7 +93,7 @@ function renderModule(){
     `;
 
     moduleArray.forEach((item, index) => {
-        const grades = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "SU"];
+        const grades = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "SU","CS"];
 
         const dropdownOptions = grades
             .filter(grade => grade !== item.grade)
@@ -154,7 +157,7 @@ function renderGPA(){
 
     if (moduleArray.length > 0){
         moduleArray.forEach((item) => {
-            if (item.grade == "SU")
+            if (item.grade == "SU" || item.grade == "CS")
             {
                 totalmc += 0;
             }
